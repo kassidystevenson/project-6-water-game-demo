@@ -11,6 +11,30 @@ const MILESTONES = [5, 10, 15, 20, 25];
 let timer = 30;
 let timerInterval;
 
+// Difficulty settings
+const DIFFICULTY_SETTINGS = {
+  easy: {
+    winCondition: 5,
+    timeLimit: 40,
+    decoyCount: 2
+  },
+  normal: {
+    winCondition: 10,
+    timeLimit: 30,
+    decoyCount: 3
+  },
+  hard: {
+    winCondition: 15,
+    timeLimit: 20,
+    decoyCount: 5
+  }
+};
+
+let currentDifficulty = 'easy';
+let winCondition = DIFFICULTY_SETTINGS.easy.winCondition;
+let timeLimit = DIFFICULTY_SETTINGS.easy.timeLimit;
+let decoyCount = DIFFICULTY_SETTINGS.easy.decoyCount;
+
 // Creates the 3x3 game grid where items will appear
 function createGrid() {
   const grid = document.querySelector('.game-grid');
@@ -107,7 +131,7 @@ function startGame() {
   if (gameActive) return;
   gameActive = true;
   currentCans = 0;
-  timer = 30;
+  timer = timeLimit;
   updateScore();
   updateTimer();
   createGrid();
@@ -140,6 +164,20 @@ function endGame(won) {
     document.getElementById('achievements').style.display = 'none';
   }
 }
+
+// Listen for difficulty changes
+document.querySelectorAll('input[name="difficulty"]').forEach(radio => {
+  radio.addEventListener('change', (e) => {
+    currentDifficulty = e.target.value;
+    winCondition = DIFFICULTY_SETTINGS[currentDifficulty].winCondition;
+    timeLimit = DIFFICULTY_SETTINGS[currentDifficulty].timeLimit;
+    decoyCount = DIFFICULTY_SETTINGS[currentDifficulty].decoyCount;
+    // Reset UI to reflect new settings if needed
+    document.getElementById('timer').textContent = timeLimit;
+    document.getElementById('current-cans').textContent = 0;
+    // ...reset other UI as needed...
+  });
+});
 
 // Set up click handler for the start button
 document.getElementById('start-game').addEventListener('click', startGame);
