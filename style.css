@@ -1,0 +1,381 @@
+/* Charity: water Brand Colors & Fonts
+
+Primary Colors:
+- Yellow:     #FFC907
+- Blue:       #2E9DF7
+
+Secondary Colors:
+- Light Blue: #8BD1CB
+- Green:      #4FCB53
+- Orange:     #FF902A
+- Red:        #F5402C
+- Dark Green: #159A48
+- Pink:       #F16061
+
+Fonts:
+- Proxima Nova
+- Avenir
+
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
+  margin: 0;
+  padding: 30px;
+  background: linear-gradient(135deg, #fffbe7 0%, #e8e8e8 100%);
+  color: #222;
+  transition: background 0.5s;
+}
+
+.container {
+  max-width: 750px;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px 0 #ffc90733, 0 1.5px 6px #2e9df71a;
+  transition: box-shadow 0.3s;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 18px;
+  color: #FFC907; /* Charity: water yellow */
+  text-shadow: 2px 4px 0 #222, 0 2px 16px #fff2b3;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #FFC907 70%, #2E9DF7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleGlow 2s infinite alternate;
+}
+
+@keyframes titleGlow {
+  0% { text-shadow: 2px 4px 0 #222, 0 2px 16px #fff2b3; }
+  100% { text-shadow: 2px 4px 0 #222, 0 2px 32px #ffe066; }
+}
+
+h1 img {
+  height: 50px;
+  margin-right: 15px;
+  display: block;
+}
+
+.game-instructions {
+  font-size: 1.18rem;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #222;
+  background: linear-gradient(90deg, #fffbe7 60%, #e8e8e8 100%);
+  border-radius: 8px;
+  padding: 10px 0 12px 0;
+  box-shadow: 0 1px 4px #ffc90722;
+  font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
+  transition: background 0.3s;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  background: linear-gradient(90deg, #ffe066 60%, #fffbe7 100%);
+  box-shadow: 0 1px 6px #ffc90722;
+  font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
+  transition: background 0.3s;
+  padding: 15px 0;
+  border-radius: 8px;
+}
+
+.stats p {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #222;
+  text-shadow: 0 1px 2px #fffbe7;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+
+#current-cans, #timer {
+  color: #2E9DF7;
+  font-size: 1.4em;
+  font-weight: bold;
+  text-shadow: 0 1px 4px #fffbe7;
+  transition: color 0.2s;
+}
+
+/* Feedback message styling */
+.feedback-message {
+  min-height: 32px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #222;
+  transition: color 0.2s, background 0.2s;
+  font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 4px #fffbe7;
+  background: linear-gradient(90deg, #fffbe7 60%, #eaffea 100%);
+  box-shadow: 0 1px 6px #159a4822;
+  opacity: 0.95;
+  transition: background 0.3s, color 0.2s, box-shadow 0.3s;
+}
+.feedback-message.success {
+  color: #159A48;
+  background: #eaffea;
+  border-radius: 6px;
+  padding: 4px 0;
+  box-shadow: 0 2px 8px #159a4822;
+}
+.feedback-message.fail {
+  color: #F5402C;
+  background: #ffeaea;
+  border-radius: 6px;
+  padding: 4px 0;
+  box-shadow: 0 2px 8px #f5402c22;
+}
+
+/* Milestone/Achievement styling */
+.achievement {
+  display: none;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #2E9DF7;
+  margin-bottom: 10px;
+  background: #fffbe7;
+  border: 2px solid #FFC907;
+  border-radius: 8px;
+  padding: 8px 0;
+  box-shadow: 0 2px 8px #ffe06655;
+  animation: popUp 0.7s cubic-bezier(0.17, 0.67, 0.34, 2), pulse 1.2s infinite alternate;
+  font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 8px #fffbe7;
+  background: linear-gradient(90deg, #fffbe7 60%, #ffe066 100%);
+  box-shadow: 0 2px 16px #ffc90755;
+  border: 2.5px solid #FFC907;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 2px 16px #ffc90755; }
+  100% { box-shadow: 0 4px 32px #2e9df755; }
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin: 0 auto;
+  max-width: 500px;
+  background: linear-gradient(135deg, #222 80%, #2E9DF7 100%);
+  box-shadow: 0 2px 24px #ffc90733;
+  transition: background 0.3s;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.grid-cell {
+  background-color: #FFC907;
+  border: 2.5px solid #222;
+  box-shadow: 0 1px 8px #2222;
+  transition: background 0.2s, box-shadow 0.2s;
+  background: #fff;
+  border: 2.5px solid #e8e8e8;
+  box-shadow: 0 1px 8px #2221;
+  border-radius: 8px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.grid-cell:focus-within, .grid-cell:active {
+  background: #f5f5f5;
+  outline: 2.5px solid #2E9DF7;
+  box-shadow: 0 2px 12px #2e9df755;
+}
+
+/* Jerry can styling */
+.water-can-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  /* Ensure the wrapper is properly centered */
+  outline: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 2px 12px #ffc90755;
+  transition: box-shadow 0.2s;
+}
+.water-can-wrapper:focus {
+  box-shadow: 0 0 0 4px #2E9DF7, 0 2px 12px #ffc90755;
+}
+.water-can {
+  width: 36px;
+  height: 36px;
+  background: #FFC907;
+  border-radius: 6px;
+  border: 2.5px solid #e6b800;
+  box-shadow: 0 2px 8px #ffc90755;
+  display: block;
+  /* Remove SVG icon, use yellow square */
+  background-image: none;
+  /* ...existing code... */
+  animation: popUp 0.5s cubic-bezier(0.17, 0.67, 0.34, 2);
+  transition: box-shadow 0.2s, border 0.2s;
+}
+
+/* Red X feedback styling */
+.red-x-feedback {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #F5402C;
+  text-shadow: 0 2px 8px #fff, 0 1px 2px #F5402C55;
+  pointer-events: none;
+  z-index: 10;
+  animation: fadeX 0.5s linear;
+  user-select: none;
+}
+
+@keyframes fadeX {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1);}
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.3);}
+}
+
+/* Obstacle styling */
+.obstacle {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  border: 3.5px solid #F5402C;
+  background: linear-gradient(135deg, #fff 70%, #ffeaea 100%);
+  box-shadow: 0 2px 8px #f5402c33;
+  transition: box-shadow 0.2s, border 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  z-index: 2;
+  animation: popUp 0.5s cubic-bezier(0.17, 0.67, 0.34, 2);
+}
+.obstacle:focus {
+  box-shadow: 0 0 0 4px #F5402C, 0 2px 8px #f5402c33;
+}
+.decoy-bottle div {
+  width: 32px; height: 48px;
+  background: linear-gradient(180deg, #8BD1CB 60%, #fff 100%);
+  border-radius: 10px 10px 8px 8px/16px 16px 8px 8px;
+  border: 2px solid #2E9DF7;
+  position: relative;
+  box-shadow: 0 1px 6px #2e9df733;
+}
+.decoy-bottle div:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -8px; left: 10px;
+  width: 12px; height: 8px;
+  background: #2E9DF7;
+  border-radius: 4px 4px 0 0;
+}
+.penalty-sign div {
+  width: 38px; height: 38px;
+  background: #fff;
+  border-radius: 50%;
+  border: 3px solid #F5402C;
+  position: relative;
+  box-shadow: 0 1px 6px #f5402c33;
+}
+.penalty-sign div:after {
+  content: '!';
+  color: #F5402C;
+  font-size: 2rem;
+  font-weight: bold;
+  position: absolute;
+  top: 2px; left: 12px;
+}
+
+/* Button styling */
+button, .water-can-wrapper, .obstacle {
+  font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+}
+
+button {
+  background: linear-gradient(90deg, #FFC907 70%, #2E9DF7 100%);
+  color: #222;
+  border: none;
+  padding: 14px 32px;
+  font-size: 1.15rem;
+  border-radius: 10px;
+  cursor: pointer;
+  display: block;
+  margin: 30px auto 0;
+  box-shadow: 0 2px 8px #ffc90755;
+  font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-shadow: 0 1px 4px #fffbe7;
+  transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+}
+button:hover, button:focus-visible {
+  background: linear-gradient(90deg, #2E9DF7 70%, #FFC907 100%);
+  color: #fff;
+  box-shadow: 0 4px 16px #2e9df755;
+  outline: none;
+}
+
+/* Responsive design */
+@media (max-width: 700px) {
+  .container {
+    padding: 18px;
+    margin: 10px;
+  }
+  .game-grid {
+    max-width: 98vw;
+    gap: 8px;
+    padding: 6px;
+  }
+  .water-can-wrapper, .obstacle {
+    width: 48px !important;
+    height: 48px !important;
+  }
+  h1 { font-size: 1.5rem; }
+  .achievement { font-size: 1.1rem; }
+}
+
+@media (max-width: 500px) {
+  h1 { font-size: 1.1rem; }
+  .game-instructions, .stats p { font-size: 0.95rem; }
+  .container { padding: 6px; }
+  .achievement { font-size: 1rem; }
+}
+
+/* Accessibility: focus outlines for keyboard users */
+button:focus-visible {
+  outline: 3px solid #2E9DF7;
+  outline-offset: 2px;
+}

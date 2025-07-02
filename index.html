@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Water Quest</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Water Quest</h1>
+    <p class="game-instructions">
+      Tap the yellow jerry cans to earn points! Avoid decoy items. Reach milestones for surprises!
+    </p>
+    <div class="stats">
+      <p>Cans Collected: <span id="current-cans">0</span></p>
+      <p>Time Left: <span id="timer">30</span>s</p>
+    </div>
+    <div id="feedback-message" class="feedback-message" aria-live="polite"></div>
+    <div id="achievements" class="achievement"></div>
+    <div class="game-grid"></div>
+    <button id="start-game">Start Game</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
