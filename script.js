@@ -100,8 +100,9 @@ function spawnItem() {
         <div class="water-can"></div>
       </button>
     `;
-    randomCell.querySelector('.water-can-wrapper').onclick = () => {
+    randomCell.querySelector('.water-can-wrapper').onclick = (e) => {
       if (!gameActive) return;
+      e.stopPropagation();
       currentCans++;
       updateScore();
       showFeedback('Great catch!', 'success');
@@ -116,8 +117,9 @@ function spawnItem() {
         <div></div>
       </button>
     `;
-    randomCell.querySelector('.obstacle').onclick = () => {
+    randomCell.querySelector('.obstacle').onclick = (e) => {
       if (!gameActive) return;
+      e.stopPropagation();
       currentCans = Math.max(0, currentCans - 1);
       updateScore();
       showFeedback('Oops! That was a decoy!', 'fail');
@@ -162,6 +164,64 @@ function endGame(won) {
     showFeedback('Time\'s up! Try again!', 'fail');
     document.getElementById('achievements').textContent = '';
     document.getElementById('achievements').style.display = 'none';
+  }
+}
+
+// Example grid generation function with interactive elements
+function generateGrid(decoyCount) {
+  const grid = document.querySelector('.game-grid');
+  grid.innerHTML = '';
+  const totalCells = 9;
+  let canIndices = [];
+  let decoyIndices = [];
+
+  // Randomly select indices for cans and decoys
+  while (canIndices.length < 3) {
+    let idx = Math.floor(Math.random() * totalCells);
+    if (!canIndices.includes(idx)) canIndices.push(idx);
+  }
+  while (decoyIndices.length < decoyCount) {
+    let idx = Math.floor(Math.random() * totalCells);
+    if (!canIndices.includes(idx) && !decoyIndices.includes(idx)) decoyIndices.push(idx);
+  }
+
+  for (let i = 0; i < totalCells; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'grid-cell';
+
+    if (canIndices.includes(i)) {
+      // Add water can
+      const can = document.createElement('button');
+      can.className = 'water-can-wrapper';
+      can.innerHTML = '<div class="water-can"></div>';
+      can.addEventListener('click', function (e) {
+        e.stopPropagation();
+        // Remove can from DOM
+        can.remove();
+        // Update score, feedback, etc.
+        currentCans++;
+        updateScore();
+        showFeedback('Great catch!', 'success');
+        if (currentCans >= GOAL_CANS) endGame(true);
+      });
+      cell.appendChild(can);
+    } else if (decoyIndices.includes(i)) {
+      // Add obstacle/decoy
+      const obstacle = document.createElement('button');
+      obstacle.className = 'obstacle decoy-bottle';
+      obstacle.innerHTML = '<div></div>';
+      obstacle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        // Remove obstacle from DOM
+        obstacle.remove();
+        // Show feedback, penalty, etc.
+        currentCans = Math.max(0, currentCans - 1);
+        updateScore();
+        showFeedback('Oops! That was a decoy!', 'fail');
+      });
+      cell.appendChild(obstacle);
+    }
+    grid.appendChild(cell);
   }
 }
 
