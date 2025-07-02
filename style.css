@@ -358,6 +358,31 @@ button:hover, button:focus-visible {
   font-weight: bold;
 }
 
+/* Footer styling */
+.charity-footer {
+  margin-top: 40px;
+  padding: 18px 0 8px 0;
+  background: linear-gradient(90deg, #fffbe7 60%, #ffe066 100%);
+  text-align: center;
+  font-size: 1.08rem;
+  color: #222;
+  border-top: 2px solid #FFC907;
+  box-shadow: 0 -2px 12px #ffc90722;
+}
+.charity-footer a {
+  color: #2E9DF7;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.charity-footer a:hover,
+.charity-footer a:focus {
+  color: #FFC907;
+  background: #2E9DF711;
+  outline: none;
+  border-radius: 3px;
+}
+
 /* Responsive design */
 @media (max-width: 700px) {
   .container {
